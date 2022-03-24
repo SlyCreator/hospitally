@@ -5,17 +5,17 @@ import tw from 'twrnc'
 
 const SignUp = () => {
     return (
-        <SafeAreaView >
-            <View style={tw`bg-[#08857C]`}>
-               <View style={tw`mx-4 pt-8 `}>
-               <Text style={tw`text-white text-lg font-bold`}>Sign Up</Text>
-               <Text>Enter your Hospital Details</Text>
+    <View style={tw``}>
+        <View style={tw`bg-[#08857C]`}>
+               <View style={tw`mx-4 pt-10  `}>
+               <Text style={tw`text-white text-lg font-bold my-2`}>Sign Up</Text>
+               <Text style={tw`text-sm text-white`}>Enter your Hospital Details</Text>
                </View>
-                <View style={tw`bg-white h-full rounded-lg`}>
+                <View style={tw`bg-white h-full rounded-t-[24px]`}>
                     <Text>ff</Text>
                 </View>
             </View>
-        </SafeAreaView>
+    </View>
     )
 }
 
