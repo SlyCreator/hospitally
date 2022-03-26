@@ -8,6 +8,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import SignUp from './screens/SignUp';
+import SignIn from './screens/SignIn';
 
 
 
@@ -18,8 +19,14 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaProvider>
           <Stack.Navigator>
-            <Stack.Screen name='SignUpScreen' 
+          <Stack.Screen name='SignUp' 
               component={SignUp}
+              options={{
+                headerShown:false
+              }}
+            />
+          <Stack.Screen name='SignIn' 
+              component={SignIn}
               options={{
                 headerShown:false
               }}
