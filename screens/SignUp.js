@@ -1,11 +1,18 @@
 import React from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
-import { Button } from 'react-native-elements/dist/buttons/Button'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import Input from '../components/Input'
+import Button from '../components/Button';
+import {StackActions, useNavigation} from '@react-navigation/core'
 
 const SignUp = () => {
+
+    const { dispatch } = useNavigation();
+    const onSubmit = ()=>{
+        dispatch(StackActions.push('SignIn'))
+    }
+
     return (
         <View>
             <View style={tw`bg-[#08857C] `}>
@@ -15,13 +22,13 @@ const SignUp = () => {
                     signup</Text>
                 </View>
                 <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
-                    <Input />
-                    <Input />
-                    <Input />
-                    <TouchableOpacity style={tw`bg-[#08857C] p-3 rounded-xl`}>
-                        <Text style={tw`text-white text-sm text-center`}>SIGN IN</Text>
-                    </TouchableOpacity>
-                    
+                    <Input title="Full Name"/>
+                    <Input title="Email"/>
+                    <Input title="Password" />
+                    <Button 
+                        title="SIGN UP"
+                        onPress={onSubmit}
+                    />
                 </View>
 
             </View>
