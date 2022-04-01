@@ -7,8 +7,11 @@ import HomeScreen from './screens/HomeScreen';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUp from './screens/SignUp';
-import SignIn from './screens/SignIn';
+import SignUpScreen from './screens/SignUpScreen';
+import SignInScreen from './screens/SignInScreen';
+import AddressScreen from './screens/AddressScreen';
+import AddAddressScreen from './screens/AddAddressScreen';
+import ProfileScreen from './screens/ProfileScreen';
 
 
 
@@ -19,24 +22,41 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaProvider>
           <Stack.Navigator>
-          <Stack.Screen name='SignUp' 
-              component={SignUp}
-              options={{
-                headerShown:false
-              }}
-            />
-          <Stack.Screen name='SignIn' 
-              component={SignIn}
-              options={{
-                headerShown:false
-              }}
-            />
-            <Stack.Screen name='HomeScreen'
+          <Stack.Screen name='Home'
               component={HomeScreen}
               options={{
                 headerShown: false
               }}
             />
+          <Stack.Screen name='SignUp' 
+              component={SignUpScreen}
+              options={{
+                headerShown:false
+              }}
+            />
+          <Stack.Screen name='SignIn' 
+              component={SignInScreen}
+              options={{
+                headerShown:false
+              }}
+            />
+      
+              <Stack.Screen name='Address'
+              component={AddressScreen}
+              options={{
+                headerShown: true
+              }}
+            />
+            <Stack.Screen name='AddAddress'
+            component={AddAddressScreen}
+            options={{
+              headerShown:true
+            }}/>
+            <Stack.Screen name='Profile'
+            component={ProfileScreen}
+            options={{
+              headerShown:true
+            }}/>
           </Stack.Navigator>
         </SafeAreaProvider>
       </NavigationContainer>
