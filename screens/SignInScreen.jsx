@@ -28,7 +28,7 @@ const SignIn = () => {
                     <Button title="SIGN IN" onPress={onSubmit} />
                     <View style={tw`flex-row p-4 justify-center`}>
                         <Text style={tw`text-gray-500 item-center mr-2`}>New Hospital ?</Text>
-                        <Text onPress={onSignUp} style={tw`text-[#08857C] fontbold`}>Sign-Up</Text>
+                        <Text onPress={onSignUp} style={tw`text-[#08857C] font-bold`}>Sign-Up</Text>
                     </View>
                 </View>
 
