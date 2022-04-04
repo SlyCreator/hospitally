@@ -12,56 +12,71 @@ import SignInScreen from './screens/SignInScreen';
 import AddressScreen from './screens/AddressScreen';
 import AddAddressScreen from './screens/AddAddressScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import SearchHospitalScreen from './screens/SearchHospitalScreen';
+import MapScreen from './screens/MapScreen';
 
 
 
 export default function App() {
   const Stack = createNativeStackNavigator();
   return (
-    
-      <NavigationContainer>
-        <SafeAreaProvider>
-          <Stack.Navigator>
+
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <Stack.Navigator>
           <Stack.Screen name='Home'
-              component={HomeScreen}
-              options={{
-                headerShown: false
-              }}
-            />
-          <Stack.Screen name='SignUp' 
-              component={SignUpScreen}
-              options={{
-                headerShown:false
-              }}
-            />
-          <Stack.Screen name='SignIn' 
-              component={SignInScreen}
-              options={{
-                headerShown:false
-              }}
-            />
-      
-              <Stack.Screen name='Address'
-              component={AddressScreen}
-              options={{
-                headerShown: true
-              }}
-            />
-            <Stack.Screen name='AddAddress'
+            component={HomeScreen}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen name='SignUp'
+            component={SignUpScreen}
+            options={{
+              headerShown: false
+            }}
+          />
+          <Stack.Screen name='SignIn'
+            component={SignInScreen}
+            options={{
+              headerShown: false
+            }}
+          />
+
+          <Stack.Screen name='Address'
+            component={AddressScreen}
+            options={{
+              headerShown: true
+            }}
+          />
+          <Stack.Screen name='AddAddress'
             component={AddAddressScreen}
             options={{
-              headerShown:true
-            }}/>
-            <Stack.Screen name='Profile'
+              headerShown: true
+            }} />
+          <Stack.Screen name='Profile'
             component={ProfileScreen}
             options={{
-              headerShown:true
-            }}/>
-          </Stack.Navigator>
-        </SafeAreaProvider>
-      </NavigationContainer>
+              headerShown: true
+            }} />
+          <Stack.Screen name='Search'
+            component={SearchHospitalScreen}
+            options={{
+              headerShown: true
+            }}
+          />
+          <Stack.Screen name='Map'
+            component={MapScreen}
+            options={{
+              headerShown: true
+            }}
+          />
+          
+        </Stack.Navigator>
+      </SafeAreaProvider>
+    </NavigationContainer>
 
-      );
+  );
 }
 
 const styles = StyleSheet.create({
