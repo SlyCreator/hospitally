@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity } from 'react-native'
 import tw from 'twrnc'
 import { MaterialIcons } from '@expo/vector-icons';
-import {StackActions, useNavigation} from '@react-navigation/core'
+import {StackActions, useNavigation} from '@react-navigation/native'
 
 const AddressScreen = () => {
 

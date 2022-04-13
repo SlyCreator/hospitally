@@ -1,15 +1,32 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import Input from '../components/Input'
 import Button from '../components/Button';
-import {StackActions, useNavigation} from '@react-navigation/core'
+import {StackActions, useNavigation} from '@react-navigation/native'
+import axios from 'axios';
 
 const SignUp = () => {
 
     const { dispatch } = useNavigation();
+
+    const [value,setValue] = useState({
+        fullName:'',
+        email:'',
+        password:''
+    })
+    
     const onSubmit = ()=>{
+        console.log(value)
+        axios.post('http://localhost:3000/hospitals/register', {
+            "fullname":"Madonna Hospital",
+            "email":"maddddona20@gmail.com",
+            "password":"Password1234"
+        })
+        .then(response => console.log(response.data))
+        .catch(error => console.log(error));
+
         dispatch(StackActions.push('Address'))
     }
 
@@ -25,10 +42,30 @@ const SignUp = () => {
                     <Text style={tw`text-sm text-center text-slate-100 mb-4`}>Enter your Hospital Details like name,Email,Phone
                     signup</Text>
                 </View>
+                <Text></Text>
                 <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
-                    <Input title="Full Name"/>
-                    <Input title="Email"/>
-                    <Input title="Password" />
+                    <Input 
+                    title="Full Name"
+                    value = {value.fullName}
+                    onChangeText={(fullName) => {
+                        setValue({ ...value, fullName })
+                      }}
+                    
+                    />
+                    <Input
+                     title="Email"
+                     value = {value.email}
+                     onChangeText = {email => {
+                         setValue({...value,email})
+                    }}
+                    />
+                    <Input 
+                    title="Password"
+                    value= {value.password} 
+                    onChangeText = {password =>{
+                        setValue({...value,password})
+                    }}
+                    />
                     <Button 
                         title="SIGN UP"
                         onPress={onSubmit}
