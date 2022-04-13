@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import { FontAwesome5, Fontisto } from '@expo/vector-icons';
-import {StackActions, useNavigation} from '@react-navigation/core'
+import { StackActions, useNavigation} from '@react-navigation/native'
 
 const HomeScreen = () => {
     const { dispatch } = useNavigation();
