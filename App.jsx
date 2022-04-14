@@ -14,7 +14,11 @@ import AddAddressScreen from './screens/AddAddressScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import SearchHospitalScreen from './screens/SearchHospitalScreen';
 import MapScreen from './screens/MapScreen';
-
+import FlashMessage from "react-native-flash-message";
+const LoadingSpinner = () => {
+  const { isLoading } = useAppSelector((state) => state.loading)
+  return <Spinner visible={isLoading} color={"black"} />
+}
 
 
 export default function App() {
@@ -23,9 +27,10 @@ export default function App() {
 
     <NavigationContainer>
       <SafeAreaProvider>
+      <FlashMessage position="top" /> 
+
         <Stack.Navigator>
-     
-          <Stack.Screen name='Home'
+            <Stack.Screen name='Home'
             component={HomeScreen}
             options={{
               headerShown: false

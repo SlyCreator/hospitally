@@ -1,41 +1,75 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import Input from '../components/Input'
 import Button from '../components/Button';
-import {StackActions, useNavigation} from '@react-navigation/native'
+import { StackActions, useNavigation } from '@react-navigation/native'
 import axios from 'axios';
+import { BaseUrl } from '../constants/constants'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import useToast, { Toast } from '../hooks/useToast'
+import { showMessage } from 'react-native-flash-message'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const SignUp = () => {
 
     const { dispatch } = useNavigation();
 
-    const [value,setValue] = useState({
-        fullName:'',
-        email:'',
-        password:''
+    const [value, setValue] = useState({
+        fullName: '',
+        email: '',
+        password: ''
     })
-    
-    const onSubmit = ()=>{
-        console.log(value)
-        axios.post('http://localhost:3000/hospitals/register', {
-            "fullname":"Madonna Hospital",
-            "email":"maddddona20@gmail.com",
-            "password":"Password1234"
-        })
-        .then(response => console.log(response.data))
-        .catch(error => console.log(error));
 
-        dispatch(StackActions.push('Address'))
+    const onSubmit = async () => {
+        //run a check
+        if (value.fullName == '') {
+
+            return showMessage({
+                message:"Fill in the fullname",
+                type:"warning"
+            })
+        
+        }
+        if (value.email == '') {
+            return showMessage({
+                message:"Fill in a correct email",
+                type:"warning"
+            })
+        
+        }
+        if (value.password == '') {
+            return showMessage({
+                message:"Fill in the Password",
+                type:"warning"
+            })
+        
+        }
+        await axios.post(`${BaseUrl}/hospitals/register`,
+            {
+                fullname: value.fullName,
+                email: value.email,
+                password: value.password
+            })
+            .then((response) => {
+                console.log(response.data);
+                
+                dispatch(StackActions.push('Address'))
+
+            }, (error) => {
+                console.log(error);
+            });
+
+
     }
-
-    const onSignIn = ()=>{
+    const onSignIn = () => {
         dispatch(StackActions.push('SignIn'))
     }
 
     return (
-        <View>
+        <KeyboardAwareScrollView >
+    <View>
             <View style={tw`bg-[#08857C] `}>
                 <View style={tw`mx-4 pt-10 mt-4 `}>
                     <Text style={tw`text-white text-lg text-center font-bold my-2`}>Sign Up</Text>
@@ -44,41 +78,47 @@ const SignUp = () => {
                 </View>
                 <Text></Text>
                 <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
-                    <Input 
-                    title="Full Name"
-                    value = {value.fullName}
-                    onChangeText={(fullName) => {
-                        setValue({ ...value, fullName })
-                      }}
-                    
+                    <Input
+                        title="Full Name"
+                        value={value.fullName}
+                        onChangeText={(fullName) => {
+                            setValue({ ...value, fullName })
+                        }}
+                        secureTextEntry={false}
+
                     />
                     <Input
-                     title="Email"
-                     value = {value.email}
-                     onChangeText = {email => {
-                         setValue({...value,email})
-                    }}
+                        title="Email"
+                        value={value.email}
+                        onChangeText={email => {
+                            setValue({ ...value, email })
+                        }}
+                        secureTextEntry={false}
                     />
-                    <Input 
-                    title="Password"
-                    value= {value.password} 
-                    onChangeText = {password =>{
-                        setValue({...value,password})
-                    }}
+                    <Input
+                        title="Password"
+                        value={value.password}
+                        secureTextEntry
+
+                        onChangeText={password => {
+                            setValue({ ...value, password })
+                        }}
                     />
-                    <Button 
+                    <Button
                         title="SIGN UP"
                         onPress={onSubmit}
                     />
                     <View style={tw`flex-row p-4 justify-center`}>
                         <Text style={tw`text-gray-500 items-center mr-2`}>Alreadly Have an Account ?</Text>
-                        <Text  onPress={onSignIn} style={tw`text-[#08857C] font-bold`}>Sign-In</Text>
+                        <Text onPress={onSignIn} style={tw`text-[#08857C] font-bold`}>Sign-In</Text>
                     </View>
                 </View>
 
             </View>
         </View>
-    )
+   
+        </KeyboardAwareScrollView>
+     )
 }
 
 export default SignUp
