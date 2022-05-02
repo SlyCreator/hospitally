@@ -16,7 +16,7 @@ const SignIn = () => {
         email: '',
         password: ''
     })
-    const onSubmit = () => {
+    const onSubmit = async() => {
 
         if (value.email == '') {
             return showMessage({
@@ -33,14 +33,13 @@ const SignIn = () => {
 
         }
 
-        const res = AuthService.login(value)
-        if (res != 500) {
-            return dispatch(StackActions.replace("Profile"))
-
+        const res = await AuthService.login(value)
+        if (res == 200) {
+            return dispatch(StackActions.push("Profile"))
         }
 
         return showMessage({
-            message: "Error Occur try again",
+            message: "Error: details not correct",
             type: "warning"
         })
 

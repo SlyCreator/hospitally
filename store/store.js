@@ -1,9 +1,18 @@
-import { configureStore } from '@reduxjs/toolkit'
+export const initial = {
+  user : null
+}
 
-export const store = configureStore({
-  reducer: {
-//      nav: navReducer,
-  },
-})
+export const reducer = (state,{type,payload})=>{
+  console.log(state)
+  switch (type) {
+    case 'UPDATE-USER':{
+      return {
+        ...state,
+        user:payload
+      }
+    }
+    default:
+      return state
+  }
 
-// 
+}

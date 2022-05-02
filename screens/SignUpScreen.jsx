@@ -49,7 +49,8 @@ const SignUp = () => {
 
         }
 
-        const res = AuthService.register(value)
+        const res = await AuthService.register(value)
+        console.log(res + 'dddddddd')
         if (res !=500) {
           return  dispatch(StackActions.push('Address'))
         }
@@ -83,6 +84,7 @@ const SignUp = () => {
                             onChangeText={(fullName) => {
                                 setValue({ ...value, fullName })
                             }}
+
                             secureTextEntry={false}
 
                         />

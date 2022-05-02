@@ -2,7 +2,7 @@ import { BaseUrl } from '../constants/constants'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class AuthService {
-
+    
     static async register(value) {
 
         const response = await fetch(`${BaseUrl}/hospitals/register`, {
@@ -17,6 +17,7 @@ export class AuthService {
             }),
         });
         const data =await response.json()
+        console.log(data)
         if (data.statusCode == 500) {
             return 500
         } else {
@@ -37,40 +38,48 @@ export class AuthService {
             }),
         })
         const data = await response.json()
+
+        if(data.statusCode == 401){
+            return 401
+        }
         if (data.statusCode == 500) {
             return 500
-        }else{
-         
-           await AsyncStorage.setItem('token', data.access_token)
+        }
+        else{
+            await AsyncStorage.setItem('token', data.access_token)
            return 200
         } 
     }
 
     static async updateAddress(value) {
-
-        const response = await fetch(`${BaseUrl}/hospitals/register`, {
+        const token = await AsyncStorage.getItem('token');
+        const userId = await AsyncStorage.getItem('id');
+        console.log(token);
+        console.log(userId)
+        const response = await fetch(`${BaseUrl}/hospitals/2/`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                fullname: value.fullName,
-                email: value.email,
-                password: value.password
+                state: value.state,
+                city: value.city,
+                lga: value.lga,
+                street: value.street
             }),
         });
         const data =await response.json()
         if (data.statusCode == 500) {
             return 500
         } else {
-            const res = await AuthService.login(value)
-            return res;
+
+            return 200;
         }
     }
 
     // static updateDetails() {
-    //     const token = await AsyncStorage.getItem('token');
-    //     console.log(token);
+        // const token = await AsyncStorage.getItem('token');
+        // console.log(token);
     //     fetch(`${URL}/users/schedules`, {
     //         method: 'GET',
     //         headers: { Authorization: `Bearer ${token}` },
