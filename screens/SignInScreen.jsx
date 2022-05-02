@@ -6,11 +6,12 @@ import Button from '../components/Button'
 import { StackActions, useNavigation } from '@react-navigation/native'
 import { showMessage } from 'react-native-flash-message'
 import { AuthService } from '../services/AuthService'
-
+import {UserContext} from '../store/userContext'
 
 const SignIn = () => {
 
     const { dispatch } = useNavigation();
+    const user = useContext(UserContext)
 
     const [value, setValue] = useState({
         email: '',
@@ -34,7 +35,11 @@ const SignIn = () => {
         }
 
         const res = await AuthService.login(value)
-        if (res == 200) {
+        if (res == 200 || res == 201) {
+            user.userDispatch({
+                type: 'UPDATE-USER',
+                payload: res,
+              })
             return dispatch(StackActions.push("Profile"))
         }
 

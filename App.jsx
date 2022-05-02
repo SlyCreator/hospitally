@@ -13,7 +13,8 @@ import ProfileScreen from './screens/ProfileScreen';
 import SearchHospitalScreen from './screens/SearchHospitalScreen';
 import MapScreen from './screens/MapScreen';
 import FlashMessage from "react-native-flash-message";
-import { store,reducer } from './store/store';
+import { initialState,reducer } from './store/store';
+import {UserContext} from './store/userContext'
 
 
 const LoadingSpinner = () => {
@@ -21,10 +22,10 @@ const LoadingSpinner = () => {
   return <Spinner visible={isLoading} color={"black"} />
 }
 
-export const UserContext = React.createContext()
+// export const UserContext = React.createContext()
 
 export default function App() {
-const [state,dispatch]  = useReducer(store,reducer)
+const [state,dispatch]  = useReducer(reducer,initialState)
   const Stack = createNativeStackNavigator();
   return (
     <UserContext.Provider value={{userData:state,userDispatch:dispatch}}>

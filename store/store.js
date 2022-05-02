@@ -1,9 +1,8 @@
-export const initial = {
+export const initialState = {
   user : null
 }
 
 export const reducer = (state,{type,payload})=>{
-  console.log(state)
   switch (type) {
     case 'UPDATE-USER':{
       return {

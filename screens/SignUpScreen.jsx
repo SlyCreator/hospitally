@@ -1,22 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
 import Input from '../components/Input'
 import Button from '../components/Button';
 import { StackActions, useNavigation } from '@react-navigation/native'
-import axios from 'axios';
-import { BaseUrl } from '../constants/constants'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import useToast, { Toast } from '../hooks/useToast'
 import { showMessage } from 'react-native-flash-message'
 
 import { AuthService } from '../services/AuthService'
+import {UserContext} from '../store/userContext'
+
 
 
 const SignUp = () => {
 
     const { dispatch } = useNavigation();
+    const user = useContext(UserContext)
 
     const [value, setValue] = useState({
         fullName: '',
@@ -50,8 +51,13 @@ const SignUp = () => {
         }
 
         const res = await AuthService.register(value)
-        console.log(res + 'dddddddd')
+    
         if (res !=500) {
+
+            user.userDispatch({
+                type: 'UPDATE-USER',
+                payload: res,
+              })
           return  dispatch(StackActions.push('Address'))
         }
 

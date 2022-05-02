@@ -2,7 +2,9 @@ import { BaseUrl } from '../constants/constants'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export class AuthService {
-    
+    constructor() {
+        this.dispatch  = useContext(UserContext);
+      }
     static async register(value) {
 
         const response = await fetch(`${BaseUrl}/hospitals/register`, {
@@ -17,7 +19,6 @@ export class AuthService {
             }),
         });
         const data =await response.json()
-        console.log(data)
         if (data.statusCode == 500) {
             return 500
         } else {
@@ -38,7 +39,7 @@ export class AuthService {
             }),
         })
         const data = await response.json()
-
+    
         if(data.statusCode == 401){
             return 401
         }
@@ -46,18 +47,19 @@ export class AuthService {
             return 500
         }
         else{
+            let num = data.user.id;
+            let id = num.toString();
             await AsyncStorage.setItem('token', data.access_token)
-           return 200
+           await AsyncStorage.setItem('id', id)
+            return data.user
         } 
     }
 
     static async updateAddress(value) {
         const token = await AsyncStorage.getItem('token');
         const userId = await AsyncStorage.getItem('id');
-        console.log(token);
-        console.log(userId)
-        const response = await fetch(`${BaseUrl}/hospitals/2/`, {
-            method: 'POST',
+        const response = await fetch(`${BaseUrl}/hospitals/${userId}`, {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
@@ -65,18 +67,32 @@ export class AuthService {
                 state: value.state,
                 city: value.city,
                 lga: value.lga,
-                street: value.street
+                address: value.street
             }),
         });
         const data =await response.json()
         if (data.statusCode == 500) {
             return 500
         } else {
-
-            return 200;
+            const data= await AuthService.fetchUser(userId);
+            return data;
         }
     }
-
+    static async fetchUser(id) {
+        const response = await fetch(`${BaseUrl}/hospitals/${id}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        const data =await response.json()
+        if (data.statusCode == 500) {
+            return 500
+        } else {
+       
+            return data;
+        }
+    }
     // static updateDetails() {
         // const token = await AsyncStorage.getItem('token');
         // console.log(token);

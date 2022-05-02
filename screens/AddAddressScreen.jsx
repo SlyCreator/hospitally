@@ -6,7 +6,9 @@ import Button from '../components/Button'
 import { StackActions, useNavigation } from '@react-navigation/native'
 import { AuthService } from '../services/AuthService'
 import { showMessage } from 'react-native-flash-message'
-import {UserContext} from '../App'
+import {UserContext} from '../store/userContext'
+
+
 
 
 const AddAddressScreen = () => {
@@ -19,8 +21,6 @@ const AddAddressScreen = () => {
         street:''
     })
     const onSave = async () => {
-        console.log(form)
-        //run a check
         if (form.state == '') {
 
             return showMessage({
@@ -51,11 +51,13 @@ const AddAddressScreen = () => {
 
         }
         const res= await AuthService.updateAddress(form)
+      
         if(res!=500){
             //update the store
+            console.log('about to update Store')
             user.userDispatch({
                 type: 'UPDATE-USER',
-                payload: data.data,
+                payload: res,
               })
            return dispatch(StackActions.push('Profile'))
         } 
