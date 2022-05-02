@@ -6,17 +6,18 @@ import Button from '../components/Button'
 import { StackActions, useNavigation } from '@react-navigation/native'
 import { showMessage } from 'react-native-flash-message'
 import { AuthService } from '../services/AuthService'
-
+import {UserContext} from '../store/userContext'
 
 const SignIn = () => {
 
     const { dispatch } = useNavigation();
+    const user = useContext(UserContext)
 
     const [value, setValue] = useState({
         email: '',
         password: ''
     })
-    const onSubmit = () => {
+    const onSubmit = async() => {
 
         if (value.email == '') {
             return showMessage({
@@ -33,14 +34,17 @@ const SignIn = () => {
 
         }
 
-        const res = AuthService.login(value)
-        if (res != 500) {
-            return dispatch(StackActions.replace("Profile"))
-
+        const res = await AuthService.login(value)
+        if (res == 200 || res == 201) {
+            user.userDispatch({
+                type: 'UPDATE-USER',
+                payload: res,
+              })
+            return dispatch(StackActions.push("Profile"))
         }
 
         return showMessage({
-            message: "Error Occur try again",
+            message: "Error: details not correct",
             type: "warning"
         })
 

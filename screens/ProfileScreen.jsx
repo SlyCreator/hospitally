@@ -4,9 +4,10 @@ import tw from 'twrnc'
 import Button from '../components/Button'
 import { StackActions, useNavigation } from '@react-navigation/native'
 import { Entypo } from '@expo/vector-icons';
-
+import {UserContext} from '../store/userContext'
 const ProfileScreen = () => {
     const { dispatch } = useNavigation();
+    const user = useContext(UserContext)
     const onSave = () => {
         dispatch(StackActions.push('Profile'))
     }

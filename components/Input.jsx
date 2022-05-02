@@ -7,7 +7,6 @@ const Input = (props) => {
 
         useTogglePasswordVisibility();
 
-    const [password, setPassword] = useState('');
     return (
         <View style={tw` bg-[#F7F8FA] p-2 rounded-lg mb-4 flex-row justify-between`}>
             <TextInput
