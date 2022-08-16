@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { View, Text } from 'react-native'
 import tw from 'twrnc'
 import Input from '../components/Input'

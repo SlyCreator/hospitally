@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { View, Text, TextInput, TouchableOpacity } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import tw from 'twrnc'
@@ -10,7 +10,7 @@ import useToast, { Toast } from '../hooks/useToast'
 import { showMessage } from 'react-native-flash-message'
 
 import { AuthService } from '../services/AuthService'
-import {UserContext} from '../store/userContext'
+import { UserContext } from '../store/userContext'
 
 
 
@@ -51,14 +51,14 @@ const SignUp = () => {
         }
 
         const res = await AuthService.register(value)
-    
-        if (res !=500) {
+       
+        if (res != 500) {
 
             user.userDispatch({
                 type: 'UPDATE-USER',
                 payload: res,
-              })
-          return  dispatch(StackActions.push('Address'))
+            })
+            return dispatch(StackActions.push('Address'))
         }
 
         return showMessage({
@@ -74,57 +74,62 @@ const SignUp = () => {
     }
 
     return (
-        <KeyboardAwareScrollView >
-            <View>
-                <View style={tw`bg-[#08857C] `}>
-                    <View style={tw`mx-4 pt-10 mt-4 `}>
-                        <Text style={tw`text-white text-lg text-center font-bold my-2`}>Sign Up</Text>
-                        <Text style={tw`text-sm text-center text-slate-100 mb-4`}>Enter your Hospital Details like name,Email,Phone
-                    signup</Text>
-                    </View>
-                  
-                    <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
-                        <Input
-                            title="Full Name"
-                            value={value.fullName}
-                            onChangeText={(fullName) => {
-                                setValue({ ...value, fullName })
-                            }}
+        <View style={tw`bg-[#08857C] `}>
 
-                            secureTextEntry={false}
-
-                        />
-                        <Input
-                            title="Email"
-                            value={value.email}
-                            onChangeText={email => {
-                                setValue({ ...value, email })
-                            }}
-                            secureTextEntry={false}
-                        />
-                        <Input
-                            title="Password"
-                            value={value.password}
-                            secureTextEntry
-
-                            onChangeText={password => {
-                                setValue({ ...value, password })
-                            }}
-                        />
-                        <Button
-                            title="SIGN UP"
-                            onPress={onSubmit}
-                        />
-                        <View style={tw`flex-row p-4 justify-center`}>
-                            <Text style={tw`text-gray-500 items-center mr-2`}>Alreadly Have an Account ?</Text>
-                            <Text onPress={onSignIn} style={tw`text-[#08857C] font-bold`}>Sign-In</Text>
-                        </View>
-                    </View>
-
+            <View >
+                <View style={tw`mx-4 pt-10 mt-4 `}>
+                    <Text style={tw`text-white text-2xl  font-bold`}>Welcome</Text>
+                    <Text style={tw`text-white text-2xl  font-bold`}>Register Hospital</Text>
+                </View>
+                <View style={tw`mx-4 my-4 py-2 `}>
+                    <Text style={tw`text-sm  text-slate-100`}>Health is wealth, Help save the world</Text>
+                    <Text style={tw`text-sm  text-slate-100 `}>Please register an account ?</Text>
                 </View>
             </View>
 
-        </KeyboardAwareScrollView>
+
+
+
+            <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
+                <Input
+                    title="Full Name"
+                    value={value.fullName}
+                    onChangeText={(fullName) => {
+                        setValue({ ...value, fullName })
+                    }}
+
+                    secureTextEntry={false}
+
+                />
+                <Input
+                    title="Email"
+                    value={value.email}
+                    onChangeText={email => {
+                        setValue({ ...value, email })
+                    }}
+                    secureTextEntry={false}
+                />
+                <Input
+                    title="Password"
+                    value={value.password}
+                    secureTextEntry
+
+                    onChangeText={password => {
+                        setValue({ ...value, password })
+                    }}
+                />
+                <Button
+                    title="SIGN UP"
+                    onPress={onSubmit}
+                />
+                <View style={tw`flex-row p-4 justify-center`}>
+                    <Text style={tw`text-gray-500 items-center mr-2`}>Alreadly Have an Account ?</Text>
+                    <Text onPress={onSignIn} style={tw`text-[#08857C] font-bold`}>Sign-In</Text>
+                </View>
+            </View>
+
+        </View>
+
     )
 }
 

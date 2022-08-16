@@ -19,6 +19,7 @@ export class AuthService {
             }),
         });
         const data =await response.json()
+        console.log(data)
         if (data.statusCode == 500) {
             return 500
         } else {
@@ -39,7 +40,7 @@ export class AuthService {
             }),
         })
         const data = await response.json()
-    
+        console.log(response.status)
         if(data.statusCode == 401){
             return 401
         }

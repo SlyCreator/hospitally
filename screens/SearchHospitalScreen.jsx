@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity } from 'react-native'
 import Input from '../components/Input'
 import tw from 'twrnc'
 import { MaterialIcons } from '@expo/vector-icons';
+import Button from '../components/Button'
 import { StackActions, useNavigation } from '@react-navigation/native'
 import Map from '../components/Map'
 const SearchHospitalScreen = () => {
@@ -11,9 +12,17 @@ const SearchHospitalScreen = () => {
     const onTap = () => {
         dispatch(StackActions.push('Map'))
     }
+    const onSubmit = () => {
+        dispatch(StackActions.push('Map'))
+    }
     return (
         <View style={tw`flex-1 bg-white px-6 py-4 justify-between`}>
             <Input title="What is your address" />
+            <Button
+                    title="Search"
+                    onPress={onSubmit}
+                    //style ={tw``}
+                />
 
             <TouchableOpacity onPress={onTap}>
                 <View style={tw`  items-center `}>

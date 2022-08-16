@@ -14,8 +14,8 @@ const HomeScreen = () => {
         dispatch(StackActions.push('Search'))
     }
     return (
-        <View>
-            <View style={tw`bg-[#08857C] `}>
+        <View style={tw`bg-[#08857C] `}>
+            <View>
                 <View style={tw`mx-4 pt-10 mt-4 `}>
                     <Text style={tw`text-white text-2xl  font-bold`}>Welcome to</Text>
                     <Text style={tw`text-white text-2xl  font-bold`}>Hospitally</Text>
@@ -25,7 +25,7 @@ const HomeScreen = () => {
                     <Text style={tw`text-sm  text-slate-100 `}>Search for Hospital closeby</Text>
                 </View>
             </View>
-            <View style={tw`p-4 mt-4`}>
+            <View style={tw`px-4 bg-white h-full rounded-t-[24px] my-2 py-10`}>
                 <TouchableOpacity onPress={onUser} style={tw`mb-4`}>
                     <View style={tw`bg-white p-2 rounded-lg`}>
                         <View style={tw`bg-sky-100 flex flex-row py-4 px-6 justify-between rounded-lg`}>
