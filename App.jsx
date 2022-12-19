@@ -1,87 +1,102 @@
-import { StatusBar } from 'expo-status-bar';
-import React,{useReducer} from 'react'
-import { StyleSheet, Text, View } from 'react-native';
-import HomeScreen from './screens/HomeScreen';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SignUpScreen from './screens/SignUpScreen';
-import SignInScreen from './screens/SignInScreen';
-import AddressScreen from './screens/AddressScreen';
-import AddAddressScreen from './screens/AddAddressScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import SearchHospitalScreen from './screens/SearchHospitalScreen';
-import MapScreen from './screens/MapScreen';
+import React, { useReducer } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import HomeScreen from "./screens/HomeScreen";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import SignUpScreen from "./screens/SignUpScreen";
+import SignInScreen from "./screens/SignInScreen";
+import AddressScreen from "./screens/AddressScreen";
+import AddAddressScreen from "./screens/AddAddressScreen";
+import ProfileScreen from "./screens/ProfileScreen";
+import SearchHospitalScreen from "./screens/SearchHospitalScreen";
+import MapScreen from "./screens/MapScreen";
 import FlashMessage from "react-native-flash-message";
-import { initialState,reducer } from './store/store';
-import {UserContext} from './store/userContext'
-
+import { initialState, reducer } from "./store/store";
+import { UserContext } from "./store/userContext";
+import Direction from "./screens/Direction";
 
 const LoadingSpinner = () => {
-  const { isLoading } = useAppSelector((state) => state.loading)
-  return <Spinner visible={isLoading} color={"black"} />
-}
+  const { isLoading } = useAppSelector((state) => state.loading);
+  return <Spinner visible={isLoading} color={"black"} />;
+};
 
 // export const UserContext = React.createContext()
 
 export default function App() {
-const [state,dispatch]  = useReducer(reducer,initialState)
+  const [state, dispatch] = useReducer(reducer, initialState);
   const Stack = createNativeStackNavigator();
   return (
-    <UserContext.Provider value={{userData:state,userDispatch:dispatch}}>
+    <UserContext.Provider value={{ userData: state, userDispatch: dispatch }}>
       <NavigationContainer>
         <SafeAreaProvider>
           <FlashMessage position="top" />
 
           <Stack.Navigator>
-            <Stack.Screen name='Home'
+            <Stack.Screen
+              name="Home"
               component={HomeScreen}
               options={{
-                headerShown: false
+                headerShown: false,
               }}
             />
-            <Stack.Screen name='SignUp'
+            <Stack.Screen
+              name="SignUp"
               component={SignUpScreen}
               options={{
-                headerShown: false
+                headerShown: false,
               }}
             />
-            <Stack.Screen name='SignIn'
+            <Stack.Screen
+              name="SignIn"
               component={SignInScreen}
               options={{
-                headerShown: false
+                headerShown: false,
               }}
             />
 
-            <Stack.Screen name='Address'
+            <Stack.Screen
+              name="Address"
               component={AddressScreen}
               options={{
-                headerShown: true
+                headerShown: true,
               }}
             />
-            <Stack.Screen name='AddAddress'
+            <Stack.Screen
+              name="AddAddress"
               component={AddAddressScreen}
               options={{
-                headerShown: true
-              }} />
-            <Stack.Screen name='Profile'
+                headerShown: true,
+              }}
+            />
+            <Stack.Screen
+              name="Profile"
               component={ProfileScreen}
               options={{
-                headerShown: true
-              }} />
-            <Stack.Screen name='Search'
+                headerShown: true,
+              }}
+            />
+            <Stack.Screen
+              name="Search"
               component={SearchHospitalScreen}
               options={{
-                headerShown: true
+                headerShown: true,
               }}
             />
-            <Stack.Screen name='Map'
+            <Stack.Screen
+              name="Map"
               component={MapScreen}
               options={{
-                headerShown: true
+                headerShown: true,
               }}
             />
-
+            <Stack.Screen
+              name="Direction"
+              component={Direction}
+              options={{
+                headerShown: true,
+              }}
+            />
           </Stack.Navigator>
         </SafeAreaProvider>
       </NavigationContainer>
@@ -92,8 +107,8 @@ const [state,dispatch]  = useReducer(reducer,initialState)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

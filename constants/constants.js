@@ -1,1 +1,1 @@
-export const BaseUrl = 'https://samhospital.herokuapp.com'
+export const BaseUrl = 'https://www.sam-api.cryptogainsinvestment.com/api'
