@@ -1,17 +1,52 @@
-node_modules/
-./hospitally-Api/node_modules/
-./hospitally--UI/node_modules
-.expo/
-dist/
-npm-debug.*
-*.jks
-*.p8
-*.p12
-*.key
-*.mobileprovision
-*.orig.*
-web-build/
-yarn-error.log
+./hospitally--UI/node_modules/
+./hospitally--UI/.expo/
+./hospitally--UI/dist/
+./hospitally--UI/npm-debug.*
+./hospitally--UI/*.jks
+./hospitally--UI/*.p8
+./hospitally--UI/*.p12
+./hospitally--UI/*.key
+./hospitally--UI/*.mobileprovision
+./hospitally--UI/*.orig.*
+./hospitally--UI/web-build/
+./hospitally--UI/yarn-error.log
 
 # macOS
-.DS_Store
+./hospitally--UI/.DS_Store
+
+
+# compiled output
+./hospitally-Api/dist
+./hospitally-Api/node_modules
+
+# Logs
+./hospitally-Api/logs
+./hospitally-Api/*.log
+./hospitally-Api/npm-debug.log*
+./hospitally-Api/pnpm-debug.log*
+./hospitally-Api/yarn-debug.log*
+./hospitally-Api/yarn-error.log*
+./hospitally-Api/lerna-debug.log*
+
+# OS
+./hospitally-Api/.DS_Store
+
+# Tests
+./hospitally-Api/coverage
+./hospitally-Api/.nyc_output
+
+# IDEs and editors
+./hospitally-Api/.idea
+./hospitally-Api/.project
+./hospitally-Api/.classpath
+./hospitally-Api/.c9/
+./hospitally-Api/*.launch
+./hospitally-Api/.settings/
+./hospitally-Api/*.sublime-workspace
+
+# IDE - VSCode
+./hospitally-Api/.vscode/*
+./hospitally-Api/!.vscode/settings.json
+./hospitally-Api/!.vscode/tasks.json
+./hospitally-Api/!.vscode/launch.json
+./hospitally-Api/!.vscode/extensions.json
