@@ -13,7 +13,7 @@
 
 # macOS
 ./hospitally--UI/.DS_Store
-
+./hospitally--UI/.env
 
 # compiled output
 ./hospitally-Api/dist
@@ -50,3 +50,6 @@
 ./hospitally-Api/!.vscode/tasks.json
 ./hospitally-Api/!.vscode/launch.json
 ./hospitally-Api/!.vscode/extensions.json
+
+
+./hospitally-Api/.env
