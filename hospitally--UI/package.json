@@ -19,7 +19,7 @@
     "@reduxjs/toolkit": "^1.8.0",
     "axios": "^0.26.1",
     "dotenv": "^16.0.0",
-    "expo": "^46.0.0",
+    "expo": "~48.0.18",
     "expo-constants": "~13.2.4",
     "expo-location": "~14.3.0",
     "expo-secure-store": "~11.3.0",

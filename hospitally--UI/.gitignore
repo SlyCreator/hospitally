@@ -1,6 +1,4 @@
 node_modules/
-./hospitally-Api/node_modules/
-./hospitally--UI/node_modules
 .expo/
 dist/
 npm-debug.*
